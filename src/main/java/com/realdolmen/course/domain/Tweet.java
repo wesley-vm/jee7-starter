@@ -1,25 +1,66 @@
 package com.realdolmen.course.domain;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.List;
 
-import javax.validation.constraints.NotNull;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.Valid;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
+@Entity
+@NamedQueries({
+	@NamedQuery(name = Tweet.FIND_ALL, query="select t from Tweet t"),
+			})
 public class Tweet {
 
+	public static final String FIND_ALL = "Tweet.findAll";
+	public static final String FIND_BY_FULL_NAME = "Tweet.findByFullName";
+	public static final String AVERAGE_TAGS_PER_TWEET = "Tweet.averageTagsPerTweet";
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	@Temporal(TemporalType.TIMESTAMP)
 	@Past(message="{validationConstraint.date.future}")
 	private Calendar date;
-	@NotNull(message="Username should be filled in!")
-	@Size(message="Username should be made up of atleast 2 characters!", min = 2)
-	private String username;
+	
+	@Valid
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private Person user;
 	@Size(message="Message should not be more than 140 characters!", max = 140)
 	private String message;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "tweet_tag",
+			joinColumns = @JoinColumn(name = "tweet_id"),
+			inverseJoinColumns = @JoinColumn(name = "tag_id"))
 	@Size(message="Atleast 1 tag is required!", min = 1, groups = Tags.class)
-	private Set<String> tags;
+	private List<Tag> tags;
+	@Enumerated(EnumType.STRING)
+	private Status status;
+	
+
+	public Integer getId() {
+		return id;
+	}
 	
 	public Calendar getDate() {
 		return date;
@@ -29,12 +70,12 @@ public class Tweet {
 		this.date = date;
 	}
 
-	public String getUsername() {
-		return username;
+	public Person getUser() {
+		return user;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUser(Person user) {
+		this.user = user;
 	}
 
 	public String getMessage() {
@@ -45,21 +86,34 @@ public class Tweet {
 		this.message = message;
 	}
 
-	public Set<String> getTags() {
+	public List<Tag> getTags() {
 		return tags;
 	}
 
-	public void setTags(Set<String> tags) {
+	public void setList(List<Tag> tags) {
 		this.tags = tags;
 	}
+	
+	
+	public Status getStatus() {
+		return status;
+	}
 
-	public Tweet(String username, String message, String... tags) {
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public Tweet() {
 		this.date = Calendar.getInstance();
-		this.username = username;
-		this.message = message;
-		
-		this.tags = new TreeSet<>(Arrays.asList(tags));
+		this.status = Status.DRAFT;
 	}
 	
-	
+	public Tweet(Person user, String message, Tag... tags) {
+		this.date = Calendar.getInstance();
+		this.user = user;
+		this.message = message;
+		
+		this.tags = new ArrayList<>(Arrays.asList(tags));
+		this.status = Status.DRAFT;
+	}	
 }

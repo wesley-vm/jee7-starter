@@ -32,7 +32,10 @@ public class TweetTest {
 	
 	@Test
 	public void createTweet_Date_PastDate() throws Exception{
-		Tweet t = new Tweet("Jimi", "I can see purpe haze all along the watchtower", "#Jimi");
+		Person person = new RegularPerson("Jimi", "Hendrix");
+		Tag tag = new Tag("Jimi");
+		Tweet t = new Tweet(person, "I can see purpe haze all along the watchtower", tag);
+		
 		t.setDate(new GregorianCalendar(2015,0,31));
 		Set<ConstraintViolation<Tweet>> violations = validator.validate(t);
 		Assert.assertEquals(0, violations.size());
@@ -41,7 +44,10 @@ public class TweetTest {
 	
 	@Test
 	public void createTweet_Date_CurrentDate() throws Exception{
-		Tweet t = new Tweet("Jimi", "I can see purpe haze all along the watchtower", "#Jimi");
+		Person person = new RegularPerson("Jimi", "Hendrix");
+		Tag tag = new Tag("Jimi");
+		Tweet t = new Tweet(person, "I can see purpe haze all along the watchtower", tag);
+		
 		Thread.sleep(10);
 		Set<ConstraintViolation<Tweet>> violations = validator.validate(t);
 		Assert.assertEquals(0, violations.size());
@@ -50,7 +56,10 @@ public class TweetTest {
 	
 	@Test
 	public void createTweet_Date_FutureDate() throws Exception{
-		Tweet t = new Tweet("Jimi", "I can see purpe haze all along the watchtower", "#Jimi");
+		Person person = new RegularPerson("Jimi", "Hendrix");
+		Tag tag = new Tag("Jimi");
+		Tweet t = new Tweet(person, "I can see purpe haze all along the watchtower", tag);
+		
 		t.setDate(new GregorianCalendar(2017,0,31));
 		Set<ConstraintViolation<Tweet>> violations = validator.validate(t);
 		Assert.assertEquals(1, violations.size());
@@ -63,37 +72,34 @@ public class TweetTest {
 	
 	@Test
 	public void createTweet__Username_IsNull() throws Exception{
-		Tweet t = new Tweet(null, "I can see purpe haze all along the watchtower", "#Jimi");
+		Person person = new RegularPerson(null, null);
+		Tag tag = new Tag("Jimi");
+		Tweet t = new Tweet(person, "I can see purpe haze all along the watchtower", tag);
+		
 		Thread.sleep(10);
 		Set<ConstraintViolation<Tweet>> violations = validator.validate(t);
-		ConstraintViolation<Tweet> error = violations.iterator().next();
-		Assert.assertEquals("Username should be filled in!", error.getMessage());
+		Assert.assertEquals(2, violations.size());
 		System.out.println(violations);
 	}
 	
 	@Test
 	public void createTweet__Username_IsEmptyString() throws Exception{
-		Tweet t = new Tweet("", "I can see purpe haze all along the watchtower", "#Jimi");
+		Person person = new RegularPerson("", "");
+		Tag tag = new Tag("Jimi");
+		Tweet t = new Tweet(person, "I can see purpe haze all along the watchtower", tag);
+		
 		Thread.sleep(10);
 		Set<ConstraintViolation<Tweet>> violations = validator.validate(t);
-		ConstraintViolation<Tweet> error = violations.iterator().next();
-		Assert.assertEquals("Username should be made up of atleast 2 characters!", error.getMessage());
-		System.out.println(violations);
-	}
-	
-	@Test
-	public void createTweet__Username_IsOneChar() throws Exception{
-		Tweet t = new Tweet("J", "I can see purpe haze all along the watchtower", "#Jimi");
-		Thread.sleep(10);
-		Set<ConstraintViolation<Tweet>> violations = validator.validate(t);
-		ConstraintViolation<Tweet> error = violations.iterator().next();
-		Assert.assertEquals("Username should be made up of atleast 2 characters!", error.getMessage());
+		Assert.assertEquals(2, violations.size());
 		System.out.println(violations);
 	}
 	
 	@Test
 	public void createTweet__Username_IsMandatory() throws Exception{
-		Tweet t = new Tweet("Jimi", "I can see purpe haze all along the watchtower", "#Jimi");
+		Person person = new RegularPerson("Jimi", "Hendrix");
+		Tag tag = new Tag("Jimi");
+		Tweet t = new Tweet(person, "I can see purpe haze all along the watchtower", tag);
+		
 		Thread.sleep(10);
 		Set<ConstraintViolation<Tweet>> violations = validator.validate(t);
 		Assert.assertEquals(0, violations.size());
@@ -103,7 +109,10 @@ public class TweetTest {
 	
 	@Test
 	public void createTweet_Message_IsNull() throws Exception{
-		Tweet t = new Tweet("Jimi", null, "#Jimi");
+		Person person = new RegularPerson("Jimi", "Hendrix");
+		Tag tag = new Tag("Jimi");
+		Tweet t = new Tweet(person, null, tag);
+		
 		Thread.sleep(10);
 		Set<ConstraintViolation<Tweet>> violations = validator.validate(t);
 		Assert.assertEquals(0, violations.size());
@@ -112,7 +121,10 @@ public class TweetTest {
 	
 	@Test
 	public void createTweet__Message_IsEmptyString() throws Exception{
-		Tweet t = new Tweet("Jimi", "", "#Jimi");
+		Person person = new RegularPerson("Jimi", "Hendrix");
+		Tag tag = new Tag("Jimi");
+		Tweet t = new Tweet(person, "", tag);
+		
 		Thread.sleep(10);
 		Set<ConstraintViolation<Tweet>> violations = validator.validate(t);
 		Assert.assertEquals(0, violations.size());
@@ -121,7 +133,10 @@ public class TweetTest {
 	
 	@Test
 	public void createTweet__Username_IsMaxChar() throws Exception{
-		Tweet t = new Tweet("Jimi", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et ma", "#Jimi");
+		Person person = new RegularPerson("Jimi", "Hendrix");
+		Tag tag = new Tag("Jimi");
+		Tweet t = new Tweet(person, "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et ma", tag);
+
 		Thread.sleep(10);
 		Set<ConstraintViolation<Tweet>> violations = validator.validate(t);
 		Assert.assertEquals(0, violations.size());
@@ -130,7 +145,10 @@ public class TweetTest {
 	
 	@Test
 	public void createTweet__Username_ExceedsMax() throws Exception{
-		Tweet t = new Tweet("Jimi", "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et mag", "#Jimi");
+		Person person = new RegularPerson("Jimi", "Hendrix");
+		Tag tag = new Tag("Jimi");
+		Tweet t = new Tweet(person, "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et mag", tag);
+		
 		Thread.sleep(10);
 		Set<ConstraintViolation<Tweet>> violations = validator.validate(t);
 		ConstraintViolation<Tweet> error = violations.iterator().next();
@@ -141,7 +159,9 @@ public class TweetTest {
 	
 	@Test
 	public void createTweet_Tags_emptyTagList() throws Exception{
-		Tweet t = new Tweet("Jimi", "I can see purpe haze all along the watchtower");
+		Person person = new RegularPerson("Jimi", "Hendrix");
+		Tweet t = new Tweet(person, "I can see purpe haze all along the watchtower");
+		
 		Thread.sleep(10);
 		Set<ConstraintViolation<Tweet>> violations = validator.validate(t);
 		Assert.assertEquals(0, violations.size());
@@ -150,7 +170,10 @@ public class TweetTest {
 	
 	@Test
 	public void createTweet_Tags_oneElementInTagList() throws Exception{
-		Tweet t = new Tweet("Jimi", "I can see purpe haze all along the watchtower", "#Music");
+		Person person = new RegularPerson("Jimi", "Hendrix");
+		Tag tag = new Tag("Jimi");
+		Tweet t = new Tweet(person, "I can see purpe haze all along the watchtower", tag);
+		
 		Thread.sleep(10);
 		Set<ConstraintViolation<Tweet>> violations = validator.validate(t);
 		Assert.assertEquals(0, violations.size());
@@ -159,7 +182,21 @@ public class TweetTest {
 
 	@Test
 	public void createTweet_Tags_multipleElementsInTagList() throws Exception{
-		Tweet t = new Tweet("Jimi", "I can see purpe haze all along the watchtower", "#Music", "Jimi", "Hendrix", "Classic", "Purple", "Watchtower", "Haze", "Rock", "Singer", "Songwriter", "Guitar");
+		Person person = new RegularPerson("Jimi", "Hendrix");
+		Tag tag1 = new Tag("Music");
+		Tag tag2 = new Tag("Jimi");
+		Tag tag3 = new Tag("Hendrix");
+		Tag tag4 = new Tag("Classic");
+		Tag tag5 = new Tag("Purple");
+		Tag tag6 = new Tag("Watchtower");
+		Tag tag7 = new Tag("Haze");
+		Tag tag8 = new Tag("Rock");
+		Tag tag9 = new Tag("Songwriter");
+		Tag tag10 = new Tag("Guiter");
+		Tag tag11 = new Tag("Legend");
+		
+		Tweet t = new Tweet(person, "I can see purpe haze all along the watchtower", tag1, tag2, tag3, tag4, tag5, tag6, tag7, tag8, tag9, tag10, tag11);
+		
 		Thread.sleep(10);
 		Set<ConstraintViolation<Tweet>> violations = validator.validate(t);
 		Assert.assertEquals(0, violations.size());
