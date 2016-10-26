@@ -1,0 +1,14 @@
+com\realdolmen\course\service\PersonServiceRemoteTest.class
+com\realdolmen\course\service\PersonServiceTest.class
+com\realdolmen\course\web\controller\PersonBeanTest.class
+com\realdolmen\course\web\webservice\rest\PersonRestServiceIntegrationTest.class
+com\realdolmen\course\domain\PersonTest.class
+com\realdolmen\course\utilities\persistence\PersistenceTest$DatabaseEngine.class
+com\realdolmen\course\web\webservice\soap\PersonWebServiceIntegrationTest.class
+com\realdolmen\course\service\jms\PersonMessageDrivenBeanTest.class
+com\realdolmen\course\utilities\persistence\DataSetPersistenceTest.class
+com\realdolmen\course\utilities\persistence\PersistenceTest.class
+com\realdolmen\course\utilities\persistence\JpaPersistenceTest.class
+com\realdolmen\course\repository\PersonRepositoryTest.class
+com\realdolmen\course\utilities\integration\RemoteIntegrationTest.class
+com\realdolmen\course\utilities\integration\RemoteJmsTest.class

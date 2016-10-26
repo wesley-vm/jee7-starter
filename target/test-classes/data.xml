@@ -1,0 +1,12 @@
+<dataset>
+    <person id="1000" firstName="John" lastName="Doe" disc="RP"/>
+    <person id="2000" firstName="Jane" lastName="Doe" disc="RP"/>
+    
+    <tweet id="1000" user_id="1000" message="I see purple haze"/>
+    <tweet id="2000" user_id="2000" message="Oh lord, I'd like a mercedes benz!"/>
+    <tweet id="3000" user_id="1000" message="I see riders on the storm"/>
+    
+    <tag id="1000" name="rdProud"/>
+    
+    <tweet_tag tweet_id="1000" tag_id="1000"/>
+</dataset>

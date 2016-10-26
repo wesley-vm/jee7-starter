@@ -1,0 +1,13 @@
+C:\Users\WVMBB95\gitWorkspace\jee7-starter\src\main\java\com\realdolmen\course\web\controller\PersonBean.java
+C:\Users\WVMBB95\gitWorkspace\jee7-starter\src\main\java\com\realdolmen\course\service\PersonServiceBean.java
+C:\Users\WVMBB95\gitWorkspace\jee7-starter\src\main\java\com\realdolmen\course\web\webservice\soap\PersonSoapServiceEndpoint.java
+C:\Users\WVMBB95\gitWorkspace\jee7-starter\src\main\java\com\realdolmen\course\service\jms\PersonMessageDrivenBean.java
+C:\Users\WVMBB95\gitWorkspace\jee7-starter\src\main\java\com\realdolmen\course\domain\Person.java
+C:\Users\WVMBB95\gitWorkspace\jee7-starter\src\main\java\com\realdolmen\course\web\webservice\rest\PersonList.java
+C:\Users\WVMBB95\gitWorkspace\jee7-starter\src\main\java\com\realdolmen\course\web\webservice\rest\PersonRestService.java
+C:\Users\WVMBB95\gitWorkspace\jee7-starter\src\main\java\com\realdolmen\course\web\webservice\soap\PersonSoapService.java
+C:\Users\WVMBB95\gitWorkspace\jee7-starter\src\main\java\com\realdolmen\course\repository\PersonRepository.java
+C:\Users\WVMBB95\gitWorkspace\jee7-starter\src\main\java\com\realdolmen\course\web\servlet\PeopleServlet.java
+C:\Users\WVMBB95\gitWorkspace\jee7-starter\src\main\java\com\realdolmen\course\web\webservice\rest\PersonRestServiceEndpoint.java
+C:\Users\WVMBB95\gitWorkspace\jee7-starter\src\main\java\com\realdolmen\course\web\webservice\rest\JaxRsActivator.java
+C:\Users\WVMBB95\gitWorkspace\jee7-starter\src\main\java\com\realdolmen\course\service\PersonServiceRemote.java

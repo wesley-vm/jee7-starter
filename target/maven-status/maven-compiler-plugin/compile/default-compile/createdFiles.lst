@@ -1,0 +1,13 @@
+com\realdolmen\course\web\controller\PersonBean.class
+com\realdolmen\course\service\jms\PersonMessageDrivenBean.class
+com\realdolmen\course\web\webservice\rest\PersonList.class
+com\realdolmen\course\web\webservice\soap\PersonSoapService.class
+com\realdolmen\course\domain\Person.class
+com\realdolmen\course\repository\PersonRepository.class
+com\realdolmen\course\web\webservice\rest\PersonRestServiceEndpoint.class
+com\realdolmen\course\web\servlet\PeopleServlet.class
+com\realdolmen\course\web\webservice\rest\JaxRsActivator.class
+com\realdolmen\course\web\webservice\rest\PersonRestService.class
+com\realdolmen\course\web\webservice\soap\PersonSoapServiceEndpoint.class
+com\realdolmen\course\service\PersonServiceBean.class
+com\realdolmen\course\service\PersonServiceRemote.class
