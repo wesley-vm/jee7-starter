@@ -1,8 +1,13 @@
 package com.realdolmen.course.domain;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@XmlRootElement
 public class Publisher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,6 +17,10 @@ public class Publisher {
 
     @Embedded
     private Address address;
+
+    @OneToMany
+    @JoinColumn(name = "publisher_id")
+    private List<Book> books = new ArrayList<>();
 
     public Publisher() {
     }
@@ -38,5 +47,14 @@ public class Publisher {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    @XmlTransient
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }

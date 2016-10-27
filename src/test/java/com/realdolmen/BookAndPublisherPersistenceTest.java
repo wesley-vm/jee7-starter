@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import javax.persistence.EntityManager;
 
-public class BookPersistenceTest extends JpaPersistenceTest {
+public class BookAndPublisherPersistenceTest extends JpaPersistenceTest {
     private EntityManager em;
 
     @Before
@@ -29,7 +29,7 @@ public class BookPersistenceTest extends JpaPersistenceTest {
     }
 
     @Test
-    public void bookHasAPublisher() throws Exception {
-        assertEquals("Penguin Classics", em.find(Book.class, 1000).getPublisher().getName());
+    public void publisherHasBooks() throws Exception {
+        assertEquals(2, em.find(Publisher.class, 2000).getBooks().size());
     }
 }

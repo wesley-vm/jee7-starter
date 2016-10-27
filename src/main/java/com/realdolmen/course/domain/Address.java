@@ -1,6 +1,7 @@
 package com.realdolmen.course.domain;
 
 import javax.persistence.Embeddable;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Embeddable
 public class Address {
@@ -42,5 +43,10 @@ public class Address {
 
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
+    }
+
+    @Override
+    public String toString() {
+        return street + " " + number + " " + postalCode + " " + city;
     }
 }
