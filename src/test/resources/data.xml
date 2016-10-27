@@ -1,4 +1,13 @@
 <dataset>
     <person id="1000" firstName="John" lastName="Doe"/>
     <person id="2000" firstName="Jane" lastName="Doe"/>
+
+    <publisher id="1000" name="Penguin Classics" street="Vaucampslaan" number="42" city="Huizingen" postalCode="1654"/>
+    <publisher id="2000" name="Het Kleine Huisje" street="Albert II Laan" number="157" city="Schaarbeek" postalCode="1000"/>
+
+    <book id="1000" title="Nineteen Eighty Four" author="George Orwell" publisher_id="1000"/>
+    <book id="2000" title="Animal Farm" author="George Orwell"  publisher_id="2000"/>
+    <book id="3000" title="Brave New World" author="Aldous Huxley"  publisher_id="1000"/>
+    <book id="4000" title="Moby Dick" author="Herman Melville"  publisher_id="2000"/>
+    <book id="5000" title="Uncle Tom's Cabin" author="Harriet Bleecher Stowe"  publisher_id="1000"/>
 </dataset>
