@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+
+<!-- This is my custom created WSDL file (well, actually I cheated, but just a little bit :) -->
+
+<definitions
+		xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+		xmlns:rd="http://realdolmen.com/"
+		xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		xmlns="http://schemas.xmlsoap.org/wsdl/"
+		targetNamespace="http://realdolmen.com/"
+		name="BookServices">
+	<types>
+		<xsd:schema>
+			<xsd:import namespace="http://realdolmen.com/" schemaLocation="schema.xsd"/>
+		</xsd:schema>
+	</types>
+
+	<message name="orderBookRequest">
+		<part name="parameters" element="rd:orderBook"/>
+	</message>
+
+	<message name="orderBookResponse">
+		<part name="parameters" element="rd:orderBookResponse"/>
+	</message>
+
+	<portType name="OrderBook">
+		<operation name="orderBook">
+			<input message="rd:orderBookRequest"/>
+			<output message="rd:orderBookResponse"/>
+		</operation>
+	</portType>
+	
+	<binding name="BookOrderBinding" type="rd:OrderBook">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+		<operation name="orderBook">
+			<soap:operation soapAction=""/>
+			<input>
+				<soap:body use="literal"/>
+			</input>
+			<output>
+				<soap:body use="literal"/>
+			</output>
+		</operation>
+	</binding>
+
+	<service name="BookServices">
+		<port name="BookOrderServicePort" binding="rd:BookOrderBinding">
+			<soap:address location="http://localhost:8080/BookServices/OrderBook"/>
+		</port>
+	</service>
+</definitions>
