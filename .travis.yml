@@ -1,1 +1,28 @@
 language: java
+
+script: mvn -DargLine="-DdatabaseEngine=h2" clean verify
+
+notifications:
+  email: false  
+  slack: rair-bestteam:vFeB90JXODiCNEFApbH8BKCe
+  
+jdk:
+  - oraclejdk8
+
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+      
+cache:
+  directories:
+      - $HOME/.m2
+      
+addons:
+  sonarqube: true
+env:
+  global:
+    - secure: 3eddfb2f58bc944f47f87f70f6d00d8bad31d4f5 # defines SONAR_TOKEN=abcdef0123456789
+script:
+  # other script steps might be done before running the actual SonarQube analysis
+  - sonar-scanner -Dsonar.login=$SONAR_TOKEN
