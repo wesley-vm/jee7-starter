@@ -65,7 +65,7 @@ public abstract class DataSetPersistenceTest extends PersistenceTest {
             } catch (DataSetException e) {
                 throw new RuntimeException("Problem loading DBUnit dataset", e);
             }
-        }).toArray(IDataSet[]::new)), replacements, null)
+        }).toArray(IDataSet[]::new)), replacements, null);
         return repDS;
     }
 
