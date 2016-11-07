@@ -1,5 +1,9 @@
 language: java
 
+script: mvn -DargLine="-DdatabaseEngine=h2" clean verify
+notifications:
+  email: false
+  
 jdk:
   - oraclejdk8
 
