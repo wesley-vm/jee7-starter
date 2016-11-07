@@ -59,13 +59,14 @@ public abstract class DataSetPersistenceTest extends PersistenceTest {
         final FlatXmlDataSetBuilder dataSetBuilder = new FlatXmlDataSetBuilder();
         HashMap<String, Object> replacements = new HashMap<>();
         replacements.put("{null}", null);
-        return new ReplacementDataSet(new CompositeDataSet(Arrays.stream(dataSets()).<IDataSet>map(s -> {
+		ReplacementDataSet repDS = new ReplacementDataSet(new CompositeDataSet(Arrays.stream(dataSets()).<IDataSet>map(s -> {
             try {
                 return dataSetBuilder.build(getClass().getResource(s));
             } catch (DataSetException e) {
                 throw new RuntimeException("Problem loading DBUnit dataset", e);
             }
-        }).toArray(IDataSet[]::new)), replacements, null);
+        }).toArray(IDataSet[]::new)), replacements, null)
+        return repDS;
     }
 
     /**
